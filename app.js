@@ -18,6 +18,7 @@ var passport = require('passport')
 var Strategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy
 var TwitterStrategy = require('passport-twitter').Strategy
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
 var app = express();
@@ -80,6 +81,22 @@ passport.use(new TwitterStrategy({
   },
   function(token, tokenSecret, profile, cb) {
     // User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+    //   return cb(err, user);
+    // });
+    return cb(null, profile)
+  }
+));
+
+
+// GOOGLE STRATEGY
+passport.use(new GoogleStrategy({
+    clientID: '16452008929-mqgehhprg35o31aanpnfeihubrkj1cmu.apps.googleusercontent.com',
+    clientSecret: 'TGdm4KEQZL1CKXZtYPkRJecY',
+    callbackURL: "http://localhost:3000/auth/google/callback",
+    passReqToCallback   : true
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
     //   return cb(err, user);
     // });
     return cb(null, profile)

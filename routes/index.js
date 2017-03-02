@@ -42,6 +42,7 @@ router.post('/login',
   }
 );
 
+// FACEBOOK
 router.get('/auth/facebook',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
@@ -56,7 +57,7 @@ router.get('/auth/facebook/callback',
     res.send(res.req.user);
   });
 
-
+// TWITTER
 router.get('/auth/twitter',
   passport.authenticate('twitter', { failureRedirect: '/login' }),
   function(req, res) {
@@ -70,6 +71,34 @@ router.get('/auth/twitter/callback',
     // Successful authentication, redirect home.
     res.send(res.req.user);
   });
+
+// GOOGLE
+router.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }),
+  function(req, res) {
+
+  }
+);
+
+// router.get('/auth/google',
+//   passport.authenticate('google', { scope:
+//     [ 'https://www.googleapis.com/auth/plus.login',
+//       'https://www.googleapis.com/auth/plus.profile.emails.read' ] }
+// ));
+
+// router.get('/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.send(res.req.user)
+//   }
+// );
+
+router.get( '/auth/google/callback',
+    passport.authenticate( 'google', {
+        successRedirect: '/auth/google/success',
+        failureRedirect: '/auth/google/failure'
+}));
 
 
 
