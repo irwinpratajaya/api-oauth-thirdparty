@@ -86,19 +86,19 @@ router.get('/auth/google',
 //       'https://www.googleapis.com/auth/plus.profile.emails.read' ] }
 // ));
 
-// router.get('/auth/google/callback',
-//   passport.authenticate('google', { failureRedirect: '/login' }),
-//   function(req, res) {
-//     // Successful authentication, redirect home.
-//     res.send(res.req.user)
-//   }
-// );
+router.get('/auth/google/callback',
 
-router.get( '/auth/google/callback',
-    passport.authenticate( 'google', {
-        successRedirect: '/auth/google/success',
-        failureRedirect: '/auth/google/failure'
-}));
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.send('ok')
+  }
+);
+
+// router.get( '/auth/google/callback',
+//     passport.authenticate( 'google', {
+//         successRedirect: '/auth/google/success',
+//         failureRedirect: '/auth/google/failure'
+// }));
 
 
 
