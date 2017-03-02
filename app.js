@@ -97,10 +97,11 @@ passport.use(new TwitterStrategy({
 passport.use(new GoogleStrategy({
     clientID: '16452008929-mqgehhprg35o31aanpnfeihubrkj1cmu.apps.googleusercontent.com',
     clientSecret: 'TGdm4KEQZL1CKXZtYPkRJecY',
-    callbackURL: "http://localhost:3000/auth/google/callback",
-    passReqToCallback   : true
+    callbackURL: "http://localhost:3000/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
+
+    // console.log(profile);
     // User.findOrCreate({ googleId: profile.id }, function (err, user) {
     //   return cb(err, user);
     // });
